@@ -23,4 +23,3 @@ public class Article implements Serializable {
 	private double price;
 	
 }
-

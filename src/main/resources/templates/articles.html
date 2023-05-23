@@ -23,4 +23,14 @@
     </div>
     </div>
 </body>
+<footer>
+	<ul class= "nav nav-pills">
+		<!-- Permet d'indiquer sur quelle page on se trouve, et affiche les autres pages durant la navigation (avec l'index de la page en URL)
+		une boucle permet ici d'afficher l'ensemble des pages-->
+		<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+			<!-- Indique au navigateur la page courante, et met en évidence la page actuelle -->
+			<a th:ref="@{/index(page=${status.index})}" th:text="${status.index}"></a>
+		</li>
+	</ul>
+</footer>
 </html>
