@@ -9,7 +9,14 @@
 <body>
 	<div class="container">
 		<div class= "panel panel-primary"></div>
+		<div class="panel-heading">Articles list</div>
 		<div class="panel-body">
+			<form th:action="@{/index}" method="get">
+				<label>keyword</label>
+				<input type="text" name="keyword">
+			<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
     <table class="table">
     	<tr>
     		<th>ID</th> <th>Description</th> <th>Price</th>
@@ -20,7 +27,6 @@
     		<td th:text="${a.price}"></td>
     	</tr>
     </table>
-    </div>
     </div>
 </body>
 <footer>
