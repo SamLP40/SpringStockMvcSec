@@ -12,8 +12,8 @@
 		<div class="panel-heading">Articles list</div>
 		<div class="panel-body">
 			<form th:action="@{/index}" method="get">
-				<label>keyword</label>
-				<input type="text" name="keyword">
+				<label>Type a keyword:</label>
+				<input type="text" name="keyword" th:value="${keyword}">
 			<button type="submit" class="btn btn-primary">Search</button>
 			</form>
 		</div>
@@ -25,17 +25,26 @@
     		<td th:text="${a.id}"></td>
     		<td th:text="${a.description}"></td>
     		<td th:text="${a.price}"></td>
+    		<td><a th:href="@{/delete(id=${a.id}, page=${keyword})}"></a></td>
     	</tr>
     </table>
     </div>
 </body>
 <footer>
-	<ul class= "nav nav-pills">
+	<ul class="nav nav-pills">
+		<li class="page-item">
+			<button class="page-item" onclick="localhost:8081/index?page:1" type="button">Prev</button>
+		</li>
 		<!-- Permet d'indiquer sur quelle page on se trouve, et affiche les autres pages durant la navigation (avec l'index de la page en URL)
 		une boucle permet ici d'afficher l'ensemble des pages-->
-		<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+		<li class="page-item" th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
 			<!-- Indique au navigateur la page courante, et met en évidence la page actuelle -->
-			<a th:ref="@{/index(page=${status.index})}" th:text="${status.index}"></a>
+			<a th:ref="@{/index(page=${status.index},keyword=${keyword})}"></a>
+			<!-- Pour garder le mot clé recherché dans la barre de recherche -->
+			<a class="page-link" th:ref="@{/index(page=${status.index})}" th:text="${status.index}"></a>
+		</li>
+		<li class="page-item">
+			<button class="page-item" onclick="localhost:8081/index?page:1" type="button">Next</button>
 		</li>
 	</ul>
 </footer>
