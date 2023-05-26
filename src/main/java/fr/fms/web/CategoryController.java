@@ -28,4 +28,8 @@ public class CategoryController {
 		model.addAttribute("category", new Category());
 		return "category";
 	}
+	@PostMapping("/save") 
+	public String save(Model model, @Valid Category category, BindingResult bindingResult) {
+		return "category";
+	}
 }

@@ -21,7 +21,7 @@ public class Category implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@OneToMany(mappedBy="category")
-	private Collection<Article> articles;
+	@OneToMany(mappedBy="category") // Clé étrangère liée à article
+	private Collection<Article> article;
 	
 }
