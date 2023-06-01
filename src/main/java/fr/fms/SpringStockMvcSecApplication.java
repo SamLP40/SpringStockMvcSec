@@ -22,11 +22,14 @@ public class SpringStockMvcSecApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String...args) throws Exception {
-		Category phone = categoryRepository.save(new Category(null, "Phone"));
-		Category iphone = categoryRepository.save(new Category("Iphone"));
-		Category hardware = categoryRepository.save(new Category("Hardware"));
-		Category other = categoryRepository.save(new Category((long) 4, "Other"));
-		categoryRepository.save(new Category("Phone"), (long) 2);
+		Category phone = categoryRepository.save(new Category(null, "Phone", null)); // Le 1er null conrrespond à l'ID, le 2e null correspond à collection<Article> qui contient les articles.
+		Category iphone = categoryRepository.save(new Category(null, "Iphone", null));
+		Category hardware = categoryRepository.save(new Category(null, "Hardware", null));
+		Category other = categoryRepository.save(new Category(null, "Other", null));
+		categoryRepository.save(new Category(null, "Phone", null));
+		categoryRepository.save(new Category(null, "Iphone", null));
+		categoryRepository.save(new Category(null, "Hardware", null));
+		categoryRepository.save(new Category(null, "Other", null));		
 		articleRepository.save(new Article(null, "Samsung S8", 250.0, phone));
 		articleRepository.save(new Article(null, "Samsung S9", 300.0, phone));
 		articleRepository.save(new Article(null, "Iphone 10", 500.0, iphone));
@@ -38,8 +41,6 @@ public class SpringStockMvcSecApplication implements CommandLineRunner {
 		articleRepository.save(new Article(null, "Bouteille de champagne", 69.0, other));		
 		articleRepository.save(new Article(null, "Intel Core I7", 349.0, hardware));
 		articleRepository.save(new Article(null, "Intel Core I9", 999.0, hardware));
-
-
 		
 		articleRepository.findAll().forEach(a -> System.out.println(a));
 	}

@@ -7,6 +7,6 @@ import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-	Page<Category> findByDescriptionContains(String name, Pageable pageable);
+//	Page<Category> findByIdContains(String name, Pageable pageable);	// Nommer les requêtes en fonction des attributs pour que spring sache où les chercher !
 
 }

@@ -1,6 +1,7 @@
 package fr.fms.entities;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString //Décorateurs générant les getters/setters
+@Data @NoArgsConstructor @AllArgsConstructor @ToString(exclude="articles")//Décorateurs générant les getters/setters
 public class Category implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -22,6 +23,6 @@ public class Category implements Serializable {
 	private Long id;
 	private String name;
 	@OneToMany(mappedBy="category") // Clé étrangère liée à article
-	private Collection<Article> article;
+	private Collection<Article> articles;
 	
 }
