@@ -44,7 +44,7 @@ public class ArticleController {
 		
 		articleRepository.deleteById(id);
 		System.out.println(id+" "+page+" "+keyword);
-		return "redirect:/index?page="+page+"&keyword="+keyword; // ne passe pas par le delete...
+		return "redirect:/index?page="+page+"&keyword="+keyword;
 	}
 	
 	@GetMapping("/article")
