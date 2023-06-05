@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.dao.ArticleRepository;
@@ -25,7 +26,7 @@ public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	@GetMapping("/category")
+	@GetMapping("/categories")
 	public String category(Model model) {
 		// Iterable qui va faire le tour des articles en base, pour déterminer leur catégorie
 		Iterable<Category> category = categoryRepository.findAll();
@@ -33,17 +34,18 @@ public class CategoryController {
 		return "category";
 	}
 
-	@GetMapping("/articles/{categoryId}") // mapping qui récupère la clé étrangère articles
-	public String displayArticlesByCategory(@PathVariable("categoryId") Long id, Model model) {
-		Optional<Category> categoryOptional = categoryRepository.findById(id);
-		if (categoryOptional.isPresent()) {
-			Category category = categoryOptional.get();
-			model.addAttribute("category", category);
+	@GetMapping("/displayArticlesByCategory") // mapping qui utilise la clé étrangère articles comme route
+	public String displayArticlesByCategory(@RequestParam(name="id") Long id, Model model) {
+		System.out.println(id);
+//		Optional<Category> categoryOptional = categoryRepository.findById(id);
+//		if (categoryOptional.isPresent()) {
+//			Category category = categoryOptional.get();
+//			model.addAttribute("category", category);
 			return "articles";
-		} else {
-			return "error";
-		}
-
+//		} else {
+//			return "error";
+//		}
+//
 	}
 	@PostMapping("/add") 
 	public String save(@RequestParam("name") String name) {

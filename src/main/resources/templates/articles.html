@@ -10,6 +10,14 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
+			<div class="container-fluid">
+				<ul class="nav nav-pills">
+					<li th:each="category:${listCategory}" >
+							<a th:href="@{/index(idCat=${category.id})}" th:text="${category.name}"></a>
+					</li>           
+				</ul>
+			</div>
+		
 			<div class="panel panel-primary">
 			<div class="panel-heading">Articles list</div>
 
@@ -37,12 +45,11 @@
 						<td><a class="btn btn-primary">Edit</a></td>
 					</tr>
 				</table>
-
 				<ul class="nav nav-item">
 					<li th:class="${currentPage==status.index}?'active':''"
 						th:each="page,status:${pages}"><a
 						th:href="@{/index(page=${status.index}, keyword=${keyword})}"
-						th:text="${status.index}"></a></li>
+						th:text="${status.index}" class="pull-left"></a></li>
 				</ul>
 				</div>
 			</div>
